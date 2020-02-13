@@ -8,8 +8,8 @@ class Game {
     constructor() {
         this.missed = 0;
         this.phrases = [
-            new Phrase('Life is like a box of chocolates'),
-            new Phrase('Say hello to my little friend'),
+            new Phrase('ET phone home'),
+            new Phrase('Go ahead make my day'),
             new Phrase('Show me the money'),
             new Phrase('May the force be with you'),
             new Phrase('I see dead people')
@@ -25,6 +25,19 @@ class Game {
         let i = Math.floor(Math.random() * this.phrases.length);
         return this.phrases[i];  
     };
+
+    /***
+    * Begins game by selecting a random phrase and displaying it to user
+    ***/
+    startGame() {
+        // Select 'div#overlay" and hide display
+        document.querySelector('div#overlay').style.display = 'none';
+        // Call getRandomPhrase() method on prototype 'game' object 
+        const game = new Game();
+        const randomPhrase = game.getRandomPhrase();
+        this.activePhrase = randomPhrase;
+        const phrase = new Phrase(randomPhrase.phrase);
+        phrase.addPhraseToDisplay();
+    };
 }
 
-//NEXT TO DO: SEE STEP 6 IN PROJECT GUIDE
