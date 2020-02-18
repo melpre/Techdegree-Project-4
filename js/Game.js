@@ -32,8 +32,7 @@ class Game {
     startGame() {
         // Select 'div#overlay" and hide display
         document.querySelector('div#overlay').style.display = 'none';
-        // Call getRandomPhrase() method on prototype 'game' object 
-        const game = new Game();
+        // Call getRandomPhrase() method on prototype 'game' object
         const randomPhrase = game.getRandomPhrase();
         this.activePhrase = randomPhrase;
         const phrase = new Phrase(randomPhrase.phrase);

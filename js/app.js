@@ -36,13 +36,18 @@
 // game.startGame();
 // console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 
-//STEP 8 Test
+//STEP 8
 let game;
 const resetButton = document.querySelector('button');
-resetButton.addEventListener('click', function() {
+resetButton.addEventListener('click', event => {
     game = new Game();
     game.startGame();
 });
+
+//STEP 9 Test
+//Type game.activePhrase.checkLetter('a') directly into console
+
+
 
 
 
