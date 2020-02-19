@@ -40,25 +40,30 @@ class Phrase {
     * @param (string) letter - Letter to check
     ***/
     checkLetter(letter) {
-        //Store clicked or chosen letter in variable
-        // let chosenLetter = event.target.value;
         // Store characters in the random phrase inside an array
         let charArray = this.phrase.split('');
         // Return true or false if letter parameter matches character in charArray
-        charArray.includes(letter);
+        return charArray.includes(letter);
     };
 
     /***
     * Displays passed letter on screen after a match is found
     * @param (string) letter - Letter to display
     ***/
-    // showMatchedLetter(letter) {
+    showMatchedLetter(letter) {
+        // Select phrase's li DOM elements and store in variable 
+        let liLetter = document.querySelectorAll('li');
+        // Select scoreboard's li DOM elements and store in variable
+        let liHeartLife = document.querySelectorAll('li.tries');
         // Conditional check: If clicked button matches character in random phrase, display letter/s
-            // Select all of the letter DOM elements that have a CSS class name that matches the 
-            // selected letter and replace each selected element's `hide` CSS class with the `show` 
-            // CSS class.
-        // else, remove 1 heart life from scoreboard
-    // };
+        // Select all of the letter DOM elements that have a CSS class name that matches the 
+        // selected letter and replace each selected element's `hide` CSS class with the `show` 
+        // CSS class.
+        liLetter.forEach(li => {
+            if (li.innerHTML === letter) {
+                li.setAttribute('class', 'show');
+            };
+        });    
+    };
 }
-
 

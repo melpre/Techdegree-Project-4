@@ -38,5 +38,21 @@ class Game {
         const phrase = new Phrase(randomPhrase.phrase);
         phrase.addPhraseToDisplay();
     };
+
+    /***
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't won
+    ***/
+    checkForWin() {
+        // Select phrase's li DOM elements and store in variable 
+        let liLetter = document.querySelectorAll('li.show');
+        console.log(liLetter);
+        // Check condition: if ALL phrase's li DOM elements have the class name 'show', return true
+        if (liLetter.className === 'show') {
+            return true;
+        } else {
+            return false;
+        };
+    };
 }
 
