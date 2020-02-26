@@ -44,15 +44,35 @@ class Game {
     * @return {boolean} True if game has been won, false if game wasn't won
     ***/
     checkForWin() {
-        // Select phrase's li DOM elements and store in variable 
-        let liLetter = document.querySelectorAll('li.show');
-        console.log(liLetter);
-        // Check condition: if ALL phrase's li DOM elements have the class name 'show', return true
-        if (liLetter.className === 'show') {
+        // Select phrase's hidden li DOM elements and store in variable
+        let liHide = document.querySelectorAll('li[class~="hide"]');
+        // Select phrase's displayed li DOM elements and store in variable
+        let liShow = document.querySelectorAll('li.show');
+        // Check condition: if ALL of the phrase's li DOM elements have class name 'show', return true
+        //How to test that ALL li elements have the 'show' class name?
+        if (liHide.length === 0) {
             return true;
         } else {
             return false;
         };
     };
-}
 
+    /***
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    ***/
+    removeLife() {
+        // Increase value of 'missed' property by 1
+        this.missed += 1;
+        // Declare variable to hold ALL img elements
+        const imgHearts = document.querySelectorAll('img');
+        // Loop through img elements checking for condition:
+        for (let i = 0; i < imgHearts.length; i++) {
+            // If src is 'liveHeart.png', change src to 'lostHeart.png'
+            if (imgHearts[i].src = 'images/liveHeart.png') {
+                imgHearts[i].src = 'images/lostHeart.png';
+            };
+        };
+    };
+};
