@@ -39,13 +39,33 @@
 //STEP 8
 let game;
 const resetButton = document.querySelector('button');
-resetButton.addEventListener('click', event => {
+resetButton.addEventListener('click', (event) => {
     game = new Game();
     game.startGame();
 });
 
 //STEP 9 Test
-//Type game.activePhrase.checkLetter('a') directly into console
+// Type game.activePhrase.checkLetter('a') directly into console
+// Type game.activePhrase.showMatchedLetter('a') directly into console
+// Type game.checkForWin() directly into console
+// Type game.removeLife() directly into console
+// Type game.gameOver(true/false) directly into console
+
+//STEP 10 Test
+// Select keyrow div
+const divKeyrow = document.getElementsByClassName('keyrow');
+// Select parent div of keyword buttons
+const keyboard = document.querySelector('div#qwerty');
+
+// Add event listener to 'keyboard' to listen for clicks
+keyboard.addEventListener('click', (event) => {
+    //Check condition, if clicked event is 'div.keyrow', stop event from bubbling
+    if (event === divKeyrow) {
+        event.stopPropagation();
+    };
+    game.handleInteraction(event.target);
+});
+
 
 
 

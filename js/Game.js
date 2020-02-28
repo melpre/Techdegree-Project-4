@@ -63,16 +63,47 @@ class Game {
     * Checks if player has remaining lives and ends game if player is out
     ***/
     removeLife() {
-        // Increase value of 'missed' property by 1
-        this.missed += 1;
         // Declare variable to hold ALL img elements
         const imgHearts = document.querySelectorAll('img');
-        // Loop through img elements checking for condition:
-        for (let i = 0; i < imgHearts.length; i++) {
-            // If src is 'liveHeart.png', change src to 'lostHeart.png'
-            if (imgHearts[i].src = 'images/liveHeart.png') {
-                imgHearts[i].src = 'images/lostHeart.png';
-            };
+        // If src is 'liveHeart.png', change src to 'lostHeart.png'
+        if (imgHearts[this.missed].src = 'images/liveHeart.png') {
+            imgHearts[this.missed].src = 'images/lostHeart.png';
+            // Increase value of 'missed' property by 1
+            this.missed += 1;
         };
+        if (this.missed === 5) {
+            game.gameOver(false);
+        };
+    };
+
+    /***
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    ***/
+    gameOver(gameWon) {
+        // Select 'h1#game-over-message'
+        const gameOver = document.querySelector('h1#game-over-message');
+        // Select 'div#overlay"
+        const divOverlay = document.querySelector('div#overlay');
+        // Condition check, if 'gameWon' parameter = true, 
+        if (gameWon === true) {
+            gameOver.innerHTML = 'You win! Well done!';
+            gameOver.style.display = 'block';
+            divOverlay.style.display = 'block';
+            divOverlay.setAttribute('class', 'win');
+        } else {
+            gameOver.innerHTML = 'Sorry, better luck next time!';
+            gameOver.style.display = 'block';
+            divOverlay.style.display = 'block';
+            divOverlay.setAttribute('class', 'lose');
+        };
+    };
+
+    /***
+    * Handles onscreen keyboard button clicks
+    * @param (HTMLButtonElement) button - The clicked button element
+    ***/
+    handleInteraction(button) {
+        console.log(button);
     };
 };
