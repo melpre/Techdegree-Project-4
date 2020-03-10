@@ -2,41 +2,8 @@
  * Project 4 - OOP Game App
  * app.js */
 
-//TEST CODE (PLEASE DELETE BEFORE FINAL SUBMIT)
 
-//STEP 1 Test
-// const phrase = new Phrase('Life is like a box of chocolates');
-// console.log(`Phrase-phrase: ${phrase.phrase}`);
-
-//STEP 2 Test
-// const game = new Game();
-// game.phrases.forEach((phrase, index) => {
-// console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
-// });
-
-//STEP 3 - 5 Test
-// const logPhrase = (phrase) => {
-//     console.log(`Phrase - phrase: `, phrase.phrase);
-//     };
-// const game = new Game();
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-
-//STEP 6 Test
-// const game = new Game();
-// const randomPhrase = game.getRandomPhrase();
-// const phrase = new Phrase(randomPhrase.phrase);
-// phrase.addPhraseToDisplay();
-
-//STEP 7 Test
-// const game = new Game();
-// game.startGame();
-// console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
-
-//STEP 8
+// Start Game Click Event Listener
 let game;
 const resetButton = document.querySelector('button');
 resetButton.addEventListener('click', (event) => {
@@ -44,29 +11,39 @@ resetButton.addEventListener('click', (event) => {
     game.startGame();
 });
 
-//STEP 9 Test
-// Type game.activePhrase.checkLetter('a') directly into console
-// Type game.activePhrase.showMatchedLetter('a') directly into console
-// Type game.checkForWin() directly into console
-// Type game.removeLife() directly into console
-// Type game.gameOver(true/false) directly into console
 
-//STEP 10 Test
-// Select keyrow div
-const divKeyrow = document.getElementsByClassName('keyrow');
+// Onscreen Keyboard Click Event Listener
 // Select parent div of keyword buttons
 const keyboard = document.querySelector('div#qwerty');
 
 // Add event listener to 'keyboard' to listen for clicks
 keyboard.addEventListener('click', (event) => {
-    //Check condition, if clicked event is 'div.keyrow', stop event from bubbling
-    if (event === divKeyrow) {
-        event.stopPropagation();
+    //Check condition, if clicked event has tag name button, execute handleInteraction()
+    if (event.target.tagName === 'BUTTON') {
+        game.handleInteraction(event.target);
     };
-    game.handleInteraction(event.target);
 });
 
 
+// Extra Credit:
+// Add event listener to keyboard to listen for key presses 
+document.addEventListener('keyup', (event) => {
+    // Declare variable to store key up value
+    let keyUp = event.key;
+
+    // Declare variable to store keyword buttons' value
+    let keyButtons = document.querySelectorAll('button.key');
+
+    // Loop through node list of key buttons to check condition:
+    for (let i = 0; i < keyButtons.length; i++) {
+        // If key button in array MATCHES 'keyup' event key,
+        if (keyButtons[i].innerHTML === keyUp) {
+            //Execute handleInteraction() method
+            game.handleInteraction(keyButtons[i]);
+            break;
+        };              
+    };
+});
 
 
 

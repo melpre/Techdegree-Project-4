@@ -20,7 +20,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Monaco", monospace; /* Changed */
 }
 
 body {
@@ -180,7 +180,7 @@ button {
 }
 
 .start {
-  background-color: #3a3f58;
+  background-color: #52305f; /* Changed */
 }
 
 .start a {
@@ -196,7 +196,7 @@ button {
 }
 
 .lose {
-  background-color: #f5785f;
+  background-color: #db4d4d; /* Changed */
 }
 
 .lose a {

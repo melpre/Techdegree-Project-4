@@ -3,7 +3,6 @@
  * Phrase.js */
 
 
-
 class Phrase {
     constructor (phrase) {
         this.phrase = phrase.toLowerCase();
@@ -13,13 +12,11 @@ class Phrase {
     * Display phrase on game board
     ***/
     addPhraseToDisplay() {
-        // Declare variable 'ul' and select parent element where child 'li' elements will be added
+        // Declare variable 'ulPhrase' and select parent element where child 'li' elements will be added
         const ulPhrase = document.querySelector('ul');
 
         // Store randomly selected phrase into an array of characters
         let charArray = this.phrase.split('');
-        // console.log(charArray.length); DELETE BEFORE SUBMIT
-        // console.log(charArray); DELETE BEFORE SUBMIT
 
         // Initiate loop on 'charArray' to create the needed amount of li elements with specified classes
         charArray.forEach(char => {
@@ -42,6 +39,7 @@ class Phrase {
     checkLetter(letter) {
         // Store characters in the random phrase inside an array
         let charArray = this.phrase.split('');
+
         // Return true or false if letter parameter matches character in charArray
         return charArray.includes(letter);
     };
@@ -52,14 +50,13 @@ class Phrase {
     ***/
     showMatchedLetter(letter) {
         // Select phrase's li DOM elements and store in variable 
-        let liLetter = document.querySelectorAll('li');
-        // Select scoreboard's li DOM elements and store in variable
-        let liHeartLife = document.querySelectorAll('li.tries');
-        // Conditional check: If clicked button matches character in random phrase, display letter/s
+        let liLetters = document.querySelectorAll('li');
+
         // Select all of the letter DOM elements that have a CSS class name that matches the 
         // selected letter and replace each selected element's `hide` CSS class with the `show` 
-        // CSS class.
-        liLetter.forEach(li => {
+        // CSS class
+        liLetters.forEach(li => {
+            // Conditional check: If clicked button matches character in random phrase, display letter/s
             if (li.innerHTML === letter) {
                 li.setAttribute('class', 'show');
             };
