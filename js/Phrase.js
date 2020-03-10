@@ -12,22 +12,26 @@ class Phrase {
     * Display phrase on game board
     ***/
     addPhraseToDisplay() {
-        // Declare variable 'ulPhrase' and select parent element where child 'li' elements will be added
+        // Select 'ul' element where child 'li' elements will be nested
         const ulPhrase = document.querySelector('ul');
 
         // Store randomly selected phrase into an array of characters
         let charArray = this.phrase.split('');
 
-        // Initiate loop on 'charArray' to create the needed amount of li elements with specified classes
+        // Loop through 'charArray' to create li elements and their attributes
         charArray.forEach(char => {
-            // Declare variable 'li' element for each character in the array
+
+            // Declare variable 'li' for each character in array
             let li = document.createElement('li');
             li.innerHTML = char;
             li.setAttribute('class', 'hide letter ' + char);
-            //If blank space, write class 'space' with no text innerHTML
+
+            // Check condition: If blank space, write class 'space' with no text innerHTML
             if (char === ' ') {
                 li.setAttribute('class', 'space')
             };
+
+            // Append each 'li' to 'ul'
             ulPhrase.appendChild(li);          
         });
     }
@@ -37,10 +41,10 @@ class Phrase {
     * @param (string) letter - Letter to check
     ***/
     checkLetter(letter) {
-        // Store characters in the random phrase inside an array
+        // Store characters from random phrase inside array
         let charArray = this.phrase.split('');
 
-        // Return true or false if letter parameter matches character in charArray
+        // Return true or false if letter parameter matches character in 'charArray'
         return charArray.includes(letter);
     };
 
@@ -49,14 +53,13 @@ class Phrase {
     * @param (string) letter - Letter to display
     ***/
     showMatchedLetter(letter) {
-        // Select phrase's li DOM elements and store in variable 
+        // Select ALL letter 'li' elements and store in variable 
         let liLetters = document.querySelectorAll('li');
 
-        // Select all of the letter DOM elements that have a CSS class name that matches the 
-        // selected letter and replace each selected element's `hide` CSS class with the `show` 
-        // CSS class
+        // Loop through each letter and check condition:
         liLetters.forEach(li => {
-            // Conditional check: If clicked button matches character in random phrase, display letter/s
+
+            // If clicked button matches character in random phrase, display letter/s
             if (li.innerHTML === letter) {
                 li.setAttribute('class', 'show');
             };

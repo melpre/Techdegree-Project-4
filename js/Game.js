@@ -44,7 +44,7 @@ class Game {
     * @return {boolean} True if game has been won, false if game wasn't won
     ***/
     checkForWin() {
-        // Select phrase's hidden li DOM elements and store in variable
+        // Select phrase's hidden li elements and store in variable
         let liHide = document.querySelectorAll('li[class~="hide"]');
 
         // Check condition: if there are NO hidden li elements, return true, else false
@@ -64,9 +64,10 @@ class Game {
         // Declare variable to hold ALL img elements
         const imgHearts = document.querySelectorAll('img');
 
-        // If src is 'liveHeart.png', change src to 'lostHeart.png'
+        // Check condition: if src is 'liveHeart.png', change src to 'lostHeart.png'
         if (imgHearts[this.missed].src = 'images/liveHeart.png') {
             imgHearts[this.missed].src = 'images/lostHeart.png';
+            
             // Increase value of 'missed' property by 1
             this.missed += 1;
         };
@@ -83,6 +84,9 @@ class Game {
         // Select 'h1#game-over-message'
         const gameOver = document.querySelector('h1#game-over-message');
 
+        // Select 'h2.title'
+        const title = document.querySelector('h2.title');
+
         // Select 'div#overlay"
         const divOverlay = document.querySelector('div#overlay');
 
@@ -93,12 +97,15 @@ class Game {
             gameOver.style.justifyContent = 'center';
             divOverlay.style.display = 'block';
             divOverlay.setAttribute('class', 'win');
+            title.classList.remove('slide-in'); //removes slide animation 
+
         } else {
             gameOver.innerHTML = 'Sorry, better luck next time!';
             gameOver.style.display = 'block';
             gameOver.style.justifyContent = 'center';
             divOverlay.style.display = 'block';
             divOverlay.setAttribute('class', 'lose');
+            title.classList.remove('slide-in'); //removes slide animation
         };
 
         // Add click event listener to reset button
@@ -115,20 +122,28 @@ class Game {
     * @param (HTMLButtonElement) button - The clicked button element
     ***/
     handleInteraction(button) {
-        // Declare variable to hold 'button's' inner HTML value
+        // Store 'button's' inner HTML value in variable
         let chosenLetter = button.innerHTML;
 
-        // Check condition: If checkLetter method returns true (chosen letter = letter in phrase),
+        // Check condition: If checkLetter() method returns true (chosen letter = letter in phrase),
         if (this.activePhrase.checkLetter(chosenLetter)) {
+            // Disable keyboard button, add class 'chosen' and display matching letter
             button.disabled = true;
             button.className = 'chosen';
             this.activePhrase.showMatchedLetter(chosenLetter);
-            // Check condition: If checkForWin method returns true (game is won),
+
+            // Check condition: If checkForWin() method returns true (game is won),
             if (this.checkForWin()) {
                 this.gameOver(true);
             };
+
+        // Else, if false (chosen letter doesn't match letter in phrase)
         } else {
+            // Add 'wrong' class, disable keyboard button and call removeLife() method
             button.className = 'wrong';
+            if (button.className === 'wrong') {
+                button.disabled = true;
+            };
             this.removeLife();
         };
     };
@@ -151,15 +166,15 @@ function resetGame() {
     keyboardButtons.forEach(key => {
         // Enable ALL keys
         key.disabled = false;
+
         // Change ALL class names back to 'key'
         key.className = 'key';
     });
 
     // Declare variable to hold ALL img elements
     const imgHearts = document.querySelectorAll('img');
-    
-    // Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of
-    // the gameboard to display the `liveHeart.png` image.
+
+    // Loop through lost hearts 'img' and change back to live hearts
     imgHearts.forEach(heart => {
         heart.src = 'images/liveHeart.png';
     });

@@ -42,6 +42,25 @@ h2 {
   margin: 0;
 }
 
+/* Added slide animation to title */
+.slide-in {
+  animation-name: slideIn; /* added */
+  animation-duration: 3s; /* added */
+}
+
+/* added */
+@keyframes slideIn {
+  from {    
+    margin-right: 100%;
+    width: 300%; 
+  }
+
+  to {    
+    margin-left: 0%;
+    width: 100%;
+  } 
+}
+
 h1 {
   font-size: 30px;
 }
@@ -62,7 +81,7 @@ button {
 
 #btn__reset {
 	width: 200px;
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .main-container {
